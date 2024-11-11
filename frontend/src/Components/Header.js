@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
+import headerLogo from '../assets/headerlogo.png';
+
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,11 +47,6 @@ const Header = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/', label: 'Events' },
-    { path: '/about', label: 'About' },
-    { path: '/team', label: 'Team' },
-    {path: '/contact',label:'Contact'},
-    {path:'/merchandise',label:'Merchandise'}
   ];
 
   return (
