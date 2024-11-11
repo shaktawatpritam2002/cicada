@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import headerLogo from "../assests/header-logo.png";
 import './Header.css';
 
 const Header = () => {
@@ -46,7 +45,7 @@ const Header = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/events', label: 'Events' },
+    { path: '/', label: 'Events' },
     { path: '/about', label: 'About' },
     { path: '/team', label: 'Team' },
     {path: '/contact',label:'Contact'},
