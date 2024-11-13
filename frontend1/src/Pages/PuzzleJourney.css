@@ -1,0 +1,114 @@
+.puzzle-journey {
+    min-height: 100vh;
+    background-color: #1a1f2e;
+    padding: 2rem;
+    color: white;
+  }
+  
+  .journey-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  
+  .journey-map {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+  }
+  
+  .puzzle-node-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .puzzle-node {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(10px);
+  }
+  
+  .puzzle-node:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .puzzle-node.locked {
+    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .node-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .puzzle-number {
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .puzzle-title {
+    margin: 0.5rem 0;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
+  .puzzle-link {
+    padding: 0.5rem 1.5rem;
+    background: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .puzzle-link:hover {
+    background: #357abd;
+  }
+  
+  .puzzle-link.disabled {
+    background: #2c3547;
+    cursor: not-allowed;
+  }
+  
+  .connector-line {
+    width: 3px;
+    height: 40px;
+    background: linear-gradient(to bottom, #4a90e2, rgba(74, 144, 226, 0.3));
+    margin: 1rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .puzzle-journey {
+      padding: 1rem;
+    }
+    
+    .journey-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .puzzle-node {
+      padding: 1rem;
+    }
+  }

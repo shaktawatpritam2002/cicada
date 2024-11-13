@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+.cicada-container {
+  background-color: #1c1c1c;
+  color: #f0f0f0;
+  font-family: 'Roboto Mono', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cicada-header,
+.cicada-footer {
+  padding: 2rem;
+  text-align: center;
+}
+
+.cicada-title {
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.cicada-content {
+  padding: 2rem;
+}
+
+.cicada-subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cicada-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.cicada-intro,
+.cicada-about,
+.cicada-participate {
+  margin-bottom: 3rem;
+}
