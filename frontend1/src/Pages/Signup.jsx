@@ -22,7 +22,7 @@ function Signup() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Form data:', formData);
-    const res = await fetch("/api/team/signup",{
+    const res = await fetch("http://localhost:3000/api/team/signup",{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ function Signup() {
     const data = await res.json();
     console.log(data);
     
-    // navigate("/");
+    navigate("/");
   };
 
   return (

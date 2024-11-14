@@ -35,18 +35,18 @@ const signupController = async(req,res)=>{
     
         const team = await Team.findOne({leader_email:email});
         if(team){
-            res.status(404).json({message:"email already present"});
+            return res.status(404).json({message:"email already present"});
         }
     
         const teammember = await Team.findOne({
             $or:[{member1:member1},{member2:member2},{member3:member3}]
         });
         if(teammember){
-            res.status(404).json({message:"member already present"});
+            return res.status(404).json({message:"member already present"});
         }
     
         if(!password){
-            res.status(404).json({message:"enter password"});
+            return res.status(404).json({message:"enter password"});
         }
     
         const salt = await bcrypt.genSalt(10);
@@ -144,6 +144,40 @@ const postAns = async(req,res) =>{
         res.status(500).json({message:"internal server error"});
     }
 }
+const updateCorrectCount=async(teamId,isCorrect)=>{
+    try {
+        const teamAnswer = await TeamAnswer.findOne({ TeamId: teamId });
+        if (teamAnswer) {
+          if (isCorrect) {
+            teamAnswer.correctCount++;
+          }
+          await teamAnswer.save();
+        } else {
+          // If no TeamAnswer document exists, create a new one
+          await TeamAnswer.create({ TeamId: teamId, correctCount: isCorrect ? 1 : 0 });
+        }
+      } catch (error) {
+        console.error('Error updating correct count:', error);
+        throw error;
+      }
+}
+const getCorrectCount = async (teamId) => {
+    try {
+      // Find the TeamAnswer document associated with the given teamId
+      const teamAnswer = await TeamAnswer.findOne({ TeamId: teamId });
+  
+      // If the document exists, return the correctCount, otherwise return 0
+      if (teamAnswer) {
+        return teamAnswer.correctCount;
+      } else {
+        // Return 0 if no TeamAnswer document exists
+        return 0;
+      }
+    } catch (error) {
+      console.error('Error fetching correct count:', error);
+      throw error;
+    }
+  };
+  
 
-
-export {signupController,LoginController,Logout,getAns,postAns};
+export {signupController,LoginController,Logout,getAns,postAns,updateCorrectCount,getCorrectCount};

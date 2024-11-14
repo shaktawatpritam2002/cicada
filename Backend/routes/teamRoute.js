@@ -1,12 +1,12 @@
 import express from "express";
-import { LoginController, signupController,Logout,getAns,postAns } from "../controller/team.js";
+import { LoginController, signupController,Logout, getCorrectCount, updateCorrectCount } from "../controller/team.js";
 
 const router = express.Router();
 
 router.post("/login",LoginController);
 router.post("/signup",signupController);
 router.post("/logout",Logout);
-router.get("/getAns/:Pid",getAns)
-router.post("/SubmitAns",postAns)
+router.get("/updateCount",getCorrectCount)
+router.post("/getCount",updateCorrectCount)
 
 export default router;
