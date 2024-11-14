@@ -19,22 +19,12 @@ function MainPage() {
         <div className='logo'><img src={logo}></img></div>
         <div className='page-title'>RosPinoT X Cicada</div>
       </div>
-      <div className="cicada-container">
-        
-          <div className="Background-img">
-            <div className="Ball-up">
-              <div className='uparrow' onClick={scrollToTop}></div>
-            </div>
-          </div>
-      
-      
-      </div>
-    </>
+    
     <div className="cicada-container">
       <div className="center-img">
        <div className="Background-img">
             <div className="Ball-up">
-              <div className='uparrow'></div>
+              <div className='uparrow' onClick={scrollToTop}></div>
             </div>
           </div>
        </div>
@@ -51,6 +41,7 @@ function MainPage() {
           </div>
        </div>
     </div>
+    </>
   );
 }
 
