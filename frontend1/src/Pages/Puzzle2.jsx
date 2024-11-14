@@ -65,7 +65,8 @@ const Puzzle2 = () => {
   };
 
   return (
-    <div className="puzzle-container">
+    <div className="center1">
+       <div className="puzzle-container">
       <header className="puzzle-header">
         <h1 className="puzzle-title">Puzzle 2: Decode the Coordinates</h1>
         
@@ -183,6 +184,8 @@ const Puzzle2 = () => {
         </div>
       </div>
     </div>
+    </div>
+   
   );
 };
 

@@ -1,14 +1,24 @@
 /* Puzzle2.css */
 .puzzle-container {
+    width: 100%;
+   
     padding: 2rem;
     background-color: #000000 ;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
+   
+   
   }
+.center1{
+  width: 95.2%;
 
+}
+body{
   
+  overflow-x: hidden;
+}
   
   .puzzle-header {
     width: 100%;
