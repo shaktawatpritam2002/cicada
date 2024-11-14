@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
-import headerLogo from '../assets/headerlogo.png';
+import headerLogo from '../assets/logo.png';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,7 @@ const Header = () => {
           onDoubleClick={handleDoubleClick}
         />
       </Link>
-
+      <span className='middle'>Cicada X RosPiNoT</span>
       <div 
         className={`hamburger-icon ${isOpen ? 'open' : ''}`} 
         onClick={toggleMenu}
