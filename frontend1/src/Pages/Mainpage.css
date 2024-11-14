@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
+
+
 .cicada-container {
   background-color: #1c1c1c;
   color: #f0f0f0;
@@ -12,7 +14,8 @@
 .Background-img{
   width: 800px;
   height: 500px;
-  background-image: url("../assets/cicda.png");
+  background-image: 
+  url("../assets/cicda.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -33,14 +36,34 @@
 
 .uparrow{
   background-image: url("../assets/uparrow.png");
+
   background-repeat: no-repeat;
   background-size: 30px;
   height: 30px;
   width: 30px;
   align-items: center;
 }
-.Background-img-center{
+
+.center-img{
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.logo > img {
+  width : 100px;
+  height: 100px;
+  margin-left: 50px;
+  padding: 8px;
+}
+
+
+.about-box{
+  background-color: black;
+  height: 300px;
+  width: 100%;
+
+
+}
+
+
