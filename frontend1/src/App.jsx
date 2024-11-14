@@ -8,6 +8,7 @@ import Login from "./Pages/Login.jsx";
 import PuzzleJourney from "./Pages/Puzzlejourney.jsx";
 import Puzzle1 from "./Pages/Puzzle1.jsx";
 import Puzzle2 from "./Pages/Puzzle2.jsx";
+import Puzzle4 from "./Pages/Puzzle4/Puzzle4.jsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/puzzle-journey" element={<PuzzleJourney/>} />
         <Route path="/puzzle/1" element={<Puzzle1 />} />
         <Route path="/puzzle/2" element={<Puzzle2 />} />
+        <Route path="/puzzle/4" element={<Puzzle4 />} />
       </Routes>
     </div>
   );
