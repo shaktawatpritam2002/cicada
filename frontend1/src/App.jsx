@@ -9,11 +9,12 @@ import Puzzle1 from "./Pages/Puzzle1.jsx";
 import Puzzle2 from "./Pages/Puzzle2.jsx";
 import Puzzle4 from "./Pages/Puzzle4/Puzzle4.jsx";
 import Puzzle6 from "./Pages/Puzzle6/Puzzle6.jsx";
+import SimpleHeader from "./Components/simpleheader.jsx";
 
 function App() {
   return (
     <div className="App">
-      
+      <SimpleHeader />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<Signup/>} />
