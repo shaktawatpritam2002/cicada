@@ -74,7 +74,7 @@ const Header = () => {
           <ul>
             {navItems.map(({ path, label }) => (
               path !== location.pathname && (
-                <li key={path}>
+                <li className="space1" key={path}>
                   <Link to={path}>{label}</Link>
                 </li>
               )
