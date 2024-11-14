@@ -149,7 +149,7 @@ const Puzzle4 = () => {
       textAlign: 'center',
       padding: '20px',
     }}>
-      <h1 style={{ color: '#00ff00' }}>Puzzle Challenge</h1>
+      <h1 style={{ color: '#00ff00', 'font-size' : '34px','padding' : '24px' }}>Puzzle Challenge</h1>
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -174,7 +174,7 @@ const Puzzle4 = () => {
           </button>
         ))}
       </div>
-      <p>Time left: {timeLeft} seconds</p>
+      <p style={{ color: '#00ff00', 'font-size' : '24px','padding' : '14px' }}>Time left: {timeLeft} seconds</p>
       {renderStep()}
       <ToastContainer position="top-center" autoClose={5000} />
     </div>
