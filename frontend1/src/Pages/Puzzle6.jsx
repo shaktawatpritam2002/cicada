@@ -1,40 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Puzzle6 = () => {
   const [currentPart, setCurrentPart] = useState(1);
-  const [time, setTime] = useState(10);
-  const [hintShown, setHintShown] = useState(false);
   const [answers, setAnswers] = useState({});
-
-  useEffect(() => {
-    if (time > 0) {
-      const timer = setTimeout(() => setTime(time - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (!hintShown) {
-      setHintShown(true);
-      showHintToast();
-    }
-  }, [time, hintShown]);
+  const [error, setError] = useState('');
 
   const showHintToast = () => {
     const hints = {
-      2: "Hint: OTAKU",
-      3: "Hint: TANJIRO",
+      1: "Hint: OTAKU - Try unscrambling the runes",
+      2: "Hint: Try converting from binary numbers",
+      3: "Hint: Use Morse code conversion",
     };
     toast.info(hints[currentPart], { position: "bottom-right", autoClose: 5000 });
   };
 
   const handleInputChange = (e, key) => {
     setAnswers({ ...answers, [key]: e.target.value });
+    setError('');
+  };
+
+  const handleEnterPress = (e) => {
+    if (e.key === 'Enter') {
+      checkAnswers();
+    }
+  };
+
+  const checkAnswers = () => {
+    if (currentPart === 1) {
+      const correctAnswers = {
+        satoru: 'satoru',
+        shinobu: 'shinobu',
+        mikasa: 'mikasa',
+        naruto: 'naruto',
+        meliodas: 'meliodas'
+      };
+      
+      const allCorrect = Object.keys(correctAnswers).every(
+        key => answers[key]?.toLowerCase() === correctAnswers[key]
+      );
+      
+      if (allCorrect) {
+        nextPart();
+      } else {
+        setError('Some answers are incorrect. Try again!');
+        toast.error('Incorrect answers. Keep trying!');
+      }
+    } else if (currentPart === 2) {
+      if (answers.audio?.toLowerCase() === 'shinzo wo sasageyo') {
+        nextPart();
+      } else {
+        setError('Incorrect answer. Try again!');
+        toast.error('Incorrect answer. Keep trying!');
+      }
+    } else if (currentPart === 3) {
+      if (answers.morse?.toLowerCase() === 'all people are nothing but tools') {
+        toast.success('Congratulations! You\'ve completed the puzzle!');
+        alert('Puzzle Completed!');
+      } else {
+        setError('Incorrect answer. Try again!');
+        toast.error('Incorrect answer. Keep trying!');
+      }
+    }
   };
 
   const nextPart = () => {
     setCurrentPart(currentPart + 1);
-    setTime(60);
-    setHintShown(false);
     setAnswers({});
+    setError('');
   };
 
   return (
@@ -44,22 +78,22 @@ const Puzzle6 = () => {
         {currentPart === 1 && (
           <div>
             <h2>Part 1: Unscramble the Word</h2>
-            <p>Unscramble the names of popular anime characters:</p>
             <ul>
               {[
-                { scramble: 'Ruosat', hint: 'Satoru', key: 'satoru' },
-                { scramble: 'ishobun', hint: 'Shinobu', key: 'shinobu' },
-                { scramble: 'akiasm', hint: 'Mikasa', key: 'mikasa' },
-                { scramble: 'aorutn', hint: 'Naruto', key: 'naruto' },
-                { scramble: 'saioemld', hint: 'Meliodas', key: 'meliodas' }
-              ].map(({ scramble, hint, key }) => (
+                { scramble: 'ᛗᛞᛏᛚᚠᛜ', key: 'satoru' },
+                { scramble: 'ᛁᛚᚹᛏᚢᛞᛊ', key: 'shinobu' },
+                { scramble: 'ᚠᛇᛁᚠᛚᛉ', key: 'mikasa' },
+                { scramble: 'ᚠᛏᛗᛞᛜᛊ', key: 'naruto' },
+                { scramble: 'ᛚᚠᛁᛏᚱᛉᛈᚨ', key: 'meliodas' }
+              ].map(({ scramble, key }) => (
                 <li key={key} style={{ marginBottom: '10px' }}>
                   {scramble}
                   <input 
                     type="text" 
                     value={answers[key] || ''} 
                     onChange={(e) => handleInputChange(e, key)} 
-                    placeholder={`Enter name for ${hint}`} 
+                    onKeyDown={handleEnterPress}
+                    placeholder=""
                     style={{
                       padding: '5px',
                       marginLeft: '10px',
@@ -72,32 +106,19 @@ const Puzzle6 = () => {
                 </li>
               ))}
             </ul>
-            <button 
-              onClick={nextPart} 
-              style={{ 
-                marginTop: '20px', 
-                padding: '10px 20px', 
-                color: '#121212', 
-                backgroundColor: '#00ff00', 
-                border: 'none', 
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Submit & Next
-            </button>
           </div>
         )}
 
         {currentPart === 2 && (
           <div>
-            <h2>Part 2: Audio Sequence</h2>
-            <audio src='../../../public/morsecode_8cj015dnk2kelo5lgfndafpngi.wav' controls />
-            <p>Listen to the audio sequence, convert it to binary (short sound = 0, long sound = 1), then to decimal, ASCII, and finally determine the word.</p>
+            <h2>Part 2: Binary Audio Sequence</h2>
+            <audio src='/audio.wav' controls />
+            <p>Convert the binary sequence to find the answer.</p>
             <input 
               type="text" 
               value={answers.audio || ''} 
               onChange={(e) => handleInputChange(e, 'audio')} 
+              onKeyDown={handleEnterPress}
               placeholder="Type your answer here" 
               style={{
                 padding: '10px',
@@ -109,32 +130,19 @@ const Puzzle6 = () => {
                 marginTop: '10px'
               }}
             />
-            <button 
-              onClick={nextPart} 
-              style={{ 
-                marginTop: '20px', 
-                padding: '10px 20px', 
-                color: '#121212', 
-                backgroundColor: '#00ff00', 
-                border: 'none', 
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Submit & Next
-            </button>
           </div>
         )}
 
         {currentPart === 3 && (
           <div>
             <h2>Part 3: Morse Code Audio</h2>
-            <audio src='../../../public/morsecode_8cj015dnk2kelo5lgfndafpngi.wav' controls />
+            <audio src='/morse.wav' controls />
             <p>Listen to the Morse code audio and decode it to find the final answer.</p>
             <input 
               type="text" 
               value={answers.morse || ''} 
               onChange={(e) => handleInputChange(e, 'morse')} 
+              onKeyDown={handleEnterPress}
               placeholder="Type your answer here" 
               style={{
                 padding: '10px',
@@ -146,26 +154,44 @@ const Puzzle6 = () => {
                 marginTop: '10px'
               }}
             />
-            <button 
-              onClick={() => alert('Puzzle Completed!')} 
-              style={{ 
-                marginTop: '20px', 
-                padding: '10px 20px', 
-                color: '#121212', 
-                backgroundColor: '#00ff00', 
-                border: 'none', 
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Submit
-            </button>
           </div>
         )}
+
+        {error && (
+          <p style={{ color: '#ff0000', marginTop: '10px' }}>{error}</p>
+        )}
+
+        <button 
+          onClick={checkAnswers} 
+          style={{ 
+            marginTop: '20px', 
+            padding: '10px 20px', 
+            color: '#121212', 
+            backgroundColor: '#00ff00', 
+            border: 'none', 
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+          aria-label={currentPart === 3 ? "Submit" : "Submit & Next"}
+        >
+          {currentPart === 3 ? "Submit" : "Submit & Next"}
+        </button>
       </div>
 
-      <div style={{ marginTop: '20px', fontSize: '18px' }}>
-        <p>Time Left: {time} seconds</p>
+      <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
+        <button
+          onClick={showHintToast}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#004400',
+            color: '#00ff00',
+            border: '1px solid #00ff00',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          Show Hint
+        </button>
       </div>
 
       <ToastContainer />

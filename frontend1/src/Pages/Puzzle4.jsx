@@ -49,7 +49,10 @@ const Puzzle4 = () => {
       case 1:
         return (
           <>
-            <p>In a world of rebirth, where the stone is not a stone, and heroes carry powers within—look to the one who walks between life and death at the number of Ichigo’s name.</p>
+            <p>"Within the clash of blades and resolve of strawberry hue,
+count all steps forward and then subtract the few,
+add to the hollow path the reiatsu's gain,
+the answer's what remains, though it may drive you insane</p>
             <input
               type="text"
               placeholder="Enter answer"
