@@ -35,7 +35,8 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div className="backgroud-img">
+      <div className="login-container">
       <h2 className="log1">Log In</h2>
       
       <form onSubmit={handleSubmit}>
@@ -73,7 +74,9 @@ function Login() {
       </div>
         
       </form>
+     </div>
     </div>
+   
   );
 }
 

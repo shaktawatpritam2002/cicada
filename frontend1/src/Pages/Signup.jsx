@@ -36,7 +36,8 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
+    <div className="backgroud-img">
+      <div className="signup-container">
       <h2 className="sign">Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label className="center1">
@@ -94,7 +95,9 @@ function Signup() {
         </div>
       
       </form>
+     </div>
     </div>
+   
   );
 }
 
