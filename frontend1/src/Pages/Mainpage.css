@@ -21,7 +21,8 @@
 .Background-img{
   width: 800px;
   height: 500px;
-  background-image: url("../assets/cicda.png");
+  background-image: 
+  url("../assets/cicda.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -42,13 +43,15 @@
 
 .uparrow{
   background-image: url("../assets/uparrow.png");
+
   background-repeat: no-repeat;
   background-size: 30px;
   height: 30px;
   width: 30px;
   align-items: center;
 }
-.Background-img-center{
+
+.center-img{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,4 +77,10 @@
   margin-right: 50px;
   font-family: Lemon-Milk;
   font-size: 32px;
+.about-box{
+  background-color: black;
+  height: 300px;
+  width: 100%;
+
+
 }
