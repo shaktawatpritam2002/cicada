@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
@@ -35,7 +36,8 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <>
+      <div className="login-container">
       <h2>Login</h2>
       
       <form onSubmit={handleSubmit}>
@@ -67,13 +69,18 @@ function Login() {
           />
         </label>
       </div>
-      <div>
+      <div className='btn-box'>
         <br />
         <button type="submit">Log In</button>
+        <Link to="/signup">
+          <button id="signup-btn-loginpage">New Here Signup!</button>
+        </Link>
       </div>
         
       </form>
     </div>
+    
+    </>
   );
 }
 

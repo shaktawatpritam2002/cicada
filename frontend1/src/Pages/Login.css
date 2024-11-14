@@ -5,13 +5,15 @@
     padding: 20px;
     /* border: 1px solid red; */
     border-radius: 8px;
-    background-color: #1e1e1e;
+    background-color: #1e1e1e !important;
     box-shadow: 0px 0px 10px 0px white;
-  margin-top: 40px;
+    margin-top: 40px;
   }
+
   
   .login-container h2 {
     text-align: center;
+  
   }
   
   .login-container form {
@@ -52,7 +54,6 @@ input{
   border-radius: 5px;
   background-color: white;
   color: black;
-  
 }
 .log-name{
   /* display: inline-block; */
@@ -68,4 +69,18 @@ input{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+
+
+.btn-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#signup-btn-loginpage{
+  width: 100%;
+  margin-top: 8px;
 }

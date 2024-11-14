@@ -5,16 +5,7 @@
     box-sizing: border-box;
   }
   
-  /* Body styling */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #1e1e1e;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
+
   
   /* Modal styling */
   .modal {
