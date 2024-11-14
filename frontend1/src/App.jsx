@@ -22,6 +22,7 @@ function App() {
         <Route path="/puzzle-journey" element={<PuzzleJourney/>} />
         <Route path="/puzzle/1" element={<Puzzle1 />} />
         <Route path="/puzzle/2" element={<Puzzle2 />} />
+<<<<<<< Updated upstream
         <Route path="/puzzle/4" element={<Puzzle4 />} />
         <Route path="/puzzle/6" element={<Puzzle6 />} />
       </Routes>
