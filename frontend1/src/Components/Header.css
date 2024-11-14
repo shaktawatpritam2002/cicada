@@ -24,18 +24,14 @@
 .logo img {
   margin: 0;
   width: 133px;
-<<<<<<< Updated upstream
   
-=======
-  
->>>>>>> Stashed changes
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(0.7);
   margin-left: 8vh;
 }
 .middle{
-  padding-right: 49px;
+  padding-right: 92px;
   font-size: 35px;
   font-weight: bold;
 }
