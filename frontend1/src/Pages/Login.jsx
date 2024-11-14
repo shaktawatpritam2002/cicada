@@ -38,10 +38,10 @@ function Login() {
       <h2>Login</h2>
       
       <form onSubmit={handleSubmit}>
-      <div>
+      <div >
         <label>
-            
-           
+            Email:
+           <br />
             <input
               type="email"
               name="email"
