@@ -6,14 +6,14 @@
     /* border: 1px solid red; */
     border-radius: 8px;
     background-color: #1e1e1e;
-    box-shadow: 0px 0px 10px 0px #00ff00;
-    /* margin-top: 40px; */
-    position: relative;
-    top: 120px;
+    box-shadow: 0px 0px 10px 0px white;
+  margin-top: 40px;
   }
+
   
   .login-container h2 {
     text-align: center;
+  
   }
   .log1{
     color: #00ff00;
@@ -57,7 +57,6 @@ input{
   border-radius: 5px;
   background-color: white;
   color: black;
-  
 }
 .log-name{
   /* display: inline-block; */
@@ -73,46 +72,4 @@ input{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.backgroud-img{
-  background-image: linear-gradient(to  bottom, black, transparent),
-  url(../assets/number1.jpeg);
- 
-  background-size: contain;
-  height: 692px;
-  width: 100%;
-  z-index: -999;
-}
-
-@media  (max-width: 480px){
-  
-
-.login-container {
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  /* border: 1px solid red; */
-  border-radius: 8px;
-  background-color: #1e1e1e;
-  box-shadow: 0px 0px 10px 0px #00ff00;
-  margin-top: 40px;
-}
-
-
-}
-@media  (max-width: 365px){
-  
-
-.login-container {
-  width: 250px;
-  margin: 0 auto;
-  padding: 20px;
-  /* border: 1px solid red; */
-  border-radius: 8px;
-  background-color: #1e1e1e;
-  box-shadow: 0px 0px 10px 0px #00ff00;
-  margin-top: 40px;
-}
-
-
 }

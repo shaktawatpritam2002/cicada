@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
@@ -68,9 +69,12 @@ function Login() {
           />
         </label>
       </div>
-      <div>
+      <div className='btn-box'>
         <br />
         <button type="submit">Log In</button>
+        <Link to="/signup">
+          <button id="signup-btn-loginpage">New Here Signup!</button>
+        </Link>
       </div>
         
       </form>

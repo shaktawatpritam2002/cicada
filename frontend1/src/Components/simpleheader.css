@@ -15,9 +15,24 @@
     background-color:#000000 ;
   }
   
-  .page-title{
+  #page-title{
     margin-left: auto;
     margin-right: 50px;
     font-family: Lemon-Milk;
     font-size: 32px;
+    color: white;
+  }
+
+  @media (max-width:768px){
+    #page-title{
+      font-size: 26px;
+    }
+  }
+
+
+  
+  @media (max-width:314px){
+    #page-title{
+      font-size: 16px;
+    }
   }
