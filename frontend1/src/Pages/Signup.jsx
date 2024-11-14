@@ -91,10 +91,13 @@ function Signup() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
-        <Link to="/login">
-        <button id="login-btn-signuppage">Login</button>
-        </Link>
+        <div className="center13">
+           <button   type="submit">Sign Up</button>
+           <Link to="/login">
+           <button id="login-btn-signuppage">Login</button>
+           </Link>
+        </div>
+       
       </form>
      </div>
     </div>

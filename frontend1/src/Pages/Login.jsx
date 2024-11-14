@@ -73,7 +73,7 @@ function Login() {
         <br />
         <button type="submit">Log In</button>
         <Link to="/signup">
-          <button id="signup-btn-loginpage">New Here Signup!</button>
+          <p id="signup-btn-loginpage">New Here Signup!</p>
         </Link>
       </div>
         
