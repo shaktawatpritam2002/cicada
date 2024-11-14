@@ -321,4 +321,7 @@
       padding: 1.5rem;
       width: 90%;
     }
+    .puzzle-input{
+      width: 100%;
+    }
   }

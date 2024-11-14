@@ -11,6 +11,22 @@
     margin: auto;
   }
   
+  #puzz4-txt{
+    font-size: 24px;
+    text-align: center;
+    width: 80%;
+    padding: 20px;
+  }
+
+  #puzz4-btn{
+    width: 100px;
+    padding: 12px;
+    background-color: white;
+    border: 0;
+    margin-top: 12px;
+    border-radius: 8px;
+  }
+  
   .puzzle4 h1 {
     font-size: 24px;
     color: #333;
