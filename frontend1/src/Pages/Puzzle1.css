@@ -1,8 +1,11 @@
 .puzzle1-container {
-    min-height: 100vh;
+    height: 100%;
     padding: 2rem;
     background-color: #121212;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .puzzle-header {
@@ -317,5 +320,8 @@
     .modal-content {
       padding: 1.5rem;
       width: 90%;
+    }
+    .puzzle-input{
+      width: 100%;
     }
   }

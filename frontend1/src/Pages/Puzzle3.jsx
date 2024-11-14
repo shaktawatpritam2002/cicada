@@ -1,27 +1,69 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const Puzzle1 = () => {
+import axios from 'axios';
+const Puzzle3 = () => {
   const [step, setStep] = useState(1);
   const [answer, setAnswer] = useState('');
   const [unlockedSteps, setUnlockedSteps] = useState([1]);
   const [timeLeft, setTimeLeft] = useState(60);
   const [showReward, setShowReward] = useState(false);
-
+  const navigate=useNavigate()
   const hints = {
     1: "Clue: Think of a renowned Roman general who was famous not just for his conquests but also for his secretive way of communicating. To unlock this message, you must step back into the past and retrace his steps through the alphabet, moving each letter back by the same number of places that his name rhymes with.",
   };
+
 
   const checkAnswer = () => {
     if (answer.trim().toLowerCase() === 'rospinot tech fest ignites robotics innovation and growth') {
       toast.success('Correct! Here is your next destination.');
       setShowReward(true);
-      setAnswer('');
+       setAnswer('');
     } else {
       toast.error('Incorrect answer. Try again!');
     }
   };
+  useEffect(() => {
+    console.log('useEffect is running');
+    const checkPuzzleNumber = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+          console.log('No token found, navigating to login');
+          navigate('/login');
+          return;
+        }
+  
+        console.log('Token found, making request to get correct count');
+        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        });
+  
+        const currentPath = window.location.pathname;
+        const puzzleNumber = currentPath.split('/')[2];
+        
+        console.log('Current puzzle number:', puzzleNumber);
+        console.log('Server count:', response.data.correctCount);
+        console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
+        
+        // Check if they match
+        if (puzzleNumber < response.data.correctCount.toString()) {
+          console.log("Puzzle numbers don't match, user can proceed");
+        } else {
+          console.log("Puzzle numbers match, redirecting to puzzle journey");
+          navigate('/puzzle-journey');
+        }
+      } catch (error) {
+        console.error('Error fetching correct count:', error);
+        navigate('/login');
+      }
+    };
+  
+    checkPuzzleNumber();
+  }, [navigate]);
 
   return (
     <div
@@ -119,4 +161,5 @@ const Puzzle1 = () => {
   );
 };
 
-export default Puzzle1;r
+
+export default Puzzle3;

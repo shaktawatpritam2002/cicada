@@ -72,12 +72,17 @@ const Puzzle6 = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#121212', color: '#00ff00', padding: '20px', fontFamily: 'Arial' }}>
+    <div style={{ backgroundColor: '#121212', color: '#00ff00', padding: '20px', fontFamily: 'Arial' , height : '100vh', "padding" : "50px"}}>
       <h1 style={{ textAlign: 'center' }}>Anime Puzzle Game</h1>
       <div>
         {currentPart === 1 && (
+
           <div>
             <h2>Part 1: Unscramble the Word</h2>
+          <div style={{padding : "12px"}}>
+            <h2 style={{padding : "12px"}}>Part 1: Unscramble the Word</h2>
+            <p style={{padding : "16px"}}>Unscramble the names of popular anime characters:</p>
+
             <ul>
               {[
                 { scramble: 'ᛗᛞᛏᛚᚠᛜ', key: 'satoru' },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./Puzzle4.css";
 
 const Puzzle4 = () => {
   const [step, setStep] = useState(1);
@@ -49,23 +50,26 @@ const Puzzle4 = () => {
       case 1:
         return (
           <>
+
             <p>"Within the clash of blades and resolve of strawberry hue,
 count all steps forward and then subtract the few,
 add to the hollow path the reiatsu's gain,
 the answer's what remains, though it may drive you insane</p>
+
+          
             <input
               type="text"
               placeholder="Enter answer"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />
-            <button onClick={() => checkAnswer('15', 2)}>Submit</button>
+            <button onClick={() => checkAnswer('15', 2)} id="puzz4-btn">Submit</button>
           </>
         );
       case 2:
         return (
           <>
-            <p>You have two choices. Choose wisely:</p>
+            <p id="puzz4-txt">You have two choices. Choose wisely:</p>
             <button onClick={() => { setStep(3); toast.info("You are brave."); }}>Hard way</button>
             <button onClick={() => { setStep(3); toast.info("You are coward."); }}>Easy way</button>
           </>
@@ -73,28 +77,28 @@ the answer's what remains, though it may drive you insane</p>
       case 3:
         return (
           <>
-            <p>Decrypt the following message using Caesar Cipher with Key 15:</p>
-            <p>"Jhxcv iwt hldgs du hjc pcs hldgs du bddc lpaz idlpgsh iwt hwpsdl epiw"</p>
+            <p id="puzz4-txt">Decrypt the following message using Caesar Cipher with Key 15:</p>
+            <p id="puzz4-txt">"Jhxcv iwt hldgs du hjc pcs hldgs du bddc lpaz idlpgsh iwt hwpsdl epiw"</p>
             <input
               type="text"
               placeholder="Enter answer"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />
-            <button onClick={() => checkAnswer('Using the sword of sun and sword of moon walk towards the shadow path', 4)}>Submit</button>
+            <button onClick={() => checkAnswer('Using the sword of sun and sword of moon walk towards the shadow path', 4)} id="puzz4-btn">Submit</button>
           </>
         );
       case 4:
         return (
           <>
-            <p>Symbols: 影 忍 戦 光</p>
+            <p id="puzz4-txt">Symbols: 影 忍 戦 光</p>
             <input
               type="text"
               placeholder="Enter answer"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />
-            <button onClick={() => checkAnswer('Shadow Ninja Fight Light', 5)}>Submit</button>
+            <button onClick={() => checkAnswer('Shadow Ninja Fight Light', 5)} id="puzz4-btn">Submit</button>
           </>
         );
       case 5:
@@ -107,13 +111,13 @@ the answer's what remains, though it may drive you insane</p>
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />
-            <button onClick={() => checkAnswer('9000+', 6)}>Submit</button>
+            <button onClick={() => checkAnswer('9000+', 6)} id="puzz4-btn">Submit</button>
           </>
         );
       case 6:
         return (
           <>
-            <p>Tell me the name of the character from Hunter x Hunter who has a similar quality to you.</p>
+            <p id="puzz4-txt">Tell me the name of the character from Hunter x Hunter who has a similar quality to you.</p>
             <input
               type="text"
               placeholder="Enter answer"
@@ -125,13 +129,14 @@ the answer's what remains, though it may drive you insane</p>
                 unlockedSteps.includes(2) ? 'Isaac Netero' : 'Tonpa',
                 7
               )}
+              id="puzz4-btn"
             >
               Submit
             </button>
           </>
         );
       case 7:
-        return <p>Congratulations! You've completed the puzzle!</p>;
+        return <p id="puzz4-txt">Congratulations! You've completed the puzzle!</p>;
       default:
         return null;
     }
@@ -150,7 +155,7 @@ the answer's what remains, though it may drive you insane</p>
       textAlign: 'center',
       padding: '20px',
     }}>
-      <h1 style={{ color: '#00ff00' }}>Puzzle Challenge</h1>
+      <h1 style={{ color: '#00ff00', 'font-size' : '34px','padding' : '24px' }}>Puzzle Challenge</h1>
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -175,7 +180,7 @@ the answer's what remains, though it may drive you insane</p>
           </button>
         ))}
       </div>
-      <p>Time left: {timeLeft} seconds</p>
+      <p style={{ color: '#00ff00', 'font-size' : '24px','padding' : '14px' }}>Time left: {timeLeft} seconds</p>
       {renderStep()}
       <ToastContainer position="top-center" autoClose={5000} />
     </div>

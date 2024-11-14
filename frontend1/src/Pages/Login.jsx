@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
@@ -20,7 +21,7 @@ function Login() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Login data:', formData);
-    const res = await fetch("/api/team/login",{
+    const res = await fetch("http://localhost:3000/api/team/login",{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
@@ -28,6 +29,7 @@ function Login() {
       body: JSON.stringify(formData),
     })
     const data = await res.json();
+    localStorage.setItem('jwt', data.token);
     console.log(data);
     if(res.ok){
      navigate("/");
@@ -35,8 +37,9 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className="backgroud-img">
+      <div className="login-container">
+      <h2 className="log1">Log In</h2>
       
       <form onSubmit={handleSubmit}>
       <div className="log-box" >
@@ -67,13 +70,18 @@ function Login() {
           />
         </label>
       </div>
-      <div>
+      <div className='btn-box'>
         <br />
         <button type="submit">Log In</button>
+        <Link to="/signup">
+          <p id="signup-btn-loginpage">New Here Signup!</p>
+        </Link>
       </div>
         
       </form>
+     </div>
     </div>
+   
   );
 }
 

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Puzzle1.css';
+import axios from "axios"
 
 const Puzzle1 = () => {
   const [part1Answer, setPart1Answer] = useState('');
@@ -22,23 +23,88 @@ const Puzzle1 = () => {
       setTimeout(() => setShowError(false), 3000);
     }
   };
-
-  const handlePart2Submit = (e) => {
+  useEffect(() => {
+    console.log('useEffect is running');
+    const checkPuzzleNumber = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+          console.log('No token found, navigating to login');
+          navigate('/login');
+          return;
+        }
+  
+        console.log('Token found, making request to get correct count');
+        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        });
+  
+        const currentPath = window.location.pathname;
+        const puzzleNumber = currentPath.split('/')[2];
+        
+        console.log('Current puzzle number:', puzzleNumber);
+        console.log('Server count:', response.data.correctCount);
+        console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
+        const count=response.data.correctCount+1
+        // Check if they match
+        if (puzzleNumber == count.toString()) {
+          console.log("Puzzle numbers don't match, user can proceed");
+        } else {
+          console.log("Puzzle numbers match, redirecting to puzzle journey");
+          navigate('/puzzle-journey');
+        }
+      } catch (error) {
+        console.error('Error fetching correct count:', error);
+        navigate('/login');
+      }
+    };
+  
+    checkPuzzleNumber();
+  }, [navigate]);
+  const handlePart2Submit = async (e) => {
+    const token = localStorage.getItem('jwt'); // or wherever you store the token
+    console.log(token)
+if (!token) {
+    console.error("No authentication token found.");
+   navigate('/login')
+}
     e.preventDefault();
     if (part2Answer === '307200') {
-      setShowSuccess(true);
-      setShowError(false);
-      setTimeout(() => {
-        setShowSuccess(false);
-        // Navigate to the next puzzle after successful completion
-        navigate('/puzzle/2');
-      }, 3000);
+      try {
+        await axios.post(`http://localhost:3000/api/team/updateCount`, { isCorrect: true }, {
+          headers: {
+              'authorization': `Bearer ${token}`  // Adding the token as Bearer token in the Authorization header
+          }
+      });
+        setShowSuccess(true);
+        setShowError(false);
+        setTimeout(() => {
+          setShowSuccess(false);
+          navigate('/puzzle/2');
+        }, 3000);
+      } catch (error) {
+        console.error('Error updating correct count:', error);
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
+      }
     } else {
-      setShowError(true);
-      setTimeout(() => setShowError(false), 3000);
+      try {
+        await axios.patch(`http://localhost:3000/api/team/updateCount`, { isCorrect: false }, {
+          headers: {
+              'Authorization': `Bearer ${token}`  // Adding the token as Bearer token in the Authorization header
+          }
+      });
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
+      } catch (error) {
+        console.error('Error updating correct count:', error);
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
+      }
     }
   };
-
   return (
     <div className="puzzle1-container">
       <h1 className="puzzle-title">Puzzle 1: The Beginning</h1>
