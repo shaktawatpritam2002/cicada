@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import headerLogo from '../assets/headerlogo.png';
 
-
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -61,32 +60,28 @@ const Header = () => {
         />
       </Link>
 
-      {!isMobile && (
-        <>
-          <div 
-            className={`hamburger-icon ${isOpen ? 'open' : ''}`} 
-            onClick={toggleMenu}
-          >
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
+      <div 
+        className={`hamburger-icon ${isOpen ? 'open' : ''}`} 
+        onClick={toggleMenu}
+      >
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
 
-          <div className={`slide-menu ${isOpen ? 'open' : ''}`}>
-            <nav>
-              <ul>
-                {navItems.map(({ path, label }) => (
-                  path !== location.pathname && (
-                    <li key={path}>
-                      <Link to={path}>{label}</Link>
-                    </li>
-                  )
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </>
-      )}
+      <div className={`slide-menu ${isOpen ? 'open' : ''}`}>
+        <nav>
+          <ul>
+            {navItems.map(({ path, label }) => (
+              path !== location.pathname && (
+                <li key={path}>
+                  <Link to={path}>{label}</Link>
+                </li>
+              )
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };
