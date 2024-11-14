@@ -47,7 +47,19 @@
     box-shadow: 0px 0px 10px 0px #45a049;
     transition: all 0.3s;
   }
+  
 
+  .btn-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  #login-btn-signuppage{
+    width: 100%;
+    margin-top: 8px;
+  }
   .center1{
     display: flex;
     flex-wrap: wrap;

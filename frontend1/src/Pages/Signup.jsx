@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./Signup.css"
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function Signup() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ function Signup() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Form data:', formData);
-    const res = await fetch("/api/team/signup",{
+    const res = await fetch("http://localhost:3000/api/team/signup",{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
@@ -32,7 +33,7 @@ function Signup() {
     const data = await res.json();
     console.log(data);
     
-    // navigate("/");
+    navigate("/");
   };
 
   return (
@@ -90,10 +91,10 @@ function Signup() {
             required
           />
         </label>
-        <div className="center1">
-          <button type="submit">Sign Up</button>
-        </div>
-      
+        <button type="submit">Sign Up</button>
+        <Link to="/login">
+        <button id="login-btn-signuppage">Login</button>
+        </Link>
       </form>
      </div>
     </div>

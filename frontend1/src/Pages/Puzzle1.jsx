@@ -22,23 +22,34 @@ const Puzzle1 = () => {
       setTimeout(() => setShowError(false), 3000);
     }
   };
-
-  const handlePart2Submit = (e) => {
+  const handlePart2Submit = async (e) => {
     e.preventDefault();
     if (part2Answer === '307200') {
-      setShowSuccess(true);
-      setShowError(false);
-      setTimeout(() => {
-        setShowSuccess(false);
-        // Navigate to the next puzzle after successful completion
-        navigate('/puzzle/2');
-      }, 3000);
+      try {
+        await axios.patch(`/api/teams/answer`, { isCorrect: true });
+        setShowSuccess(true);
+        setShowError(false);
+        setTimeout(() => {
+          setShowSuccess(false);
+          navigate('/puzzle/2');
+        }, 3000);
+      } catch (error) {
+        console.error('Error updating correct count:', error);
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
+      }
     } else {
-      setShowError(true);
-      setTimeout(() => setShowError(false), 3000);
+      try {
+        await axios.patch(`/api/teams/answer`, { isCorrect: false });
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
+      } catch (error) {
+        console.error('Error updating correct count:', error);
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
+      }
     }
   };
-
   return (
     <div className="puzzle1-container">
       <h1 className="puzzle-title">Puzzle 1: The Beginning</h1>

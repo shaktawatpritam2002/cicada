@@ -7,7 +7,7 @@ const simpleheader = () => {
     return(
       <div className='mainpage-header'>
             <div className='logo'><img src={logo}></img></div>
-            <div className='page-title'>RosPinoT X Cicada</div>
+            <div id='page-title'>RosPinoT X Cicada</div>
       </div>
     );
 };
