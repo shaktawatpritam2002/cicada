@@ -2,7 +2,7 @@ import Team from "../model/team.js"
 import jwt from "jsonwebtoken"
 const protectRoute = async(req,res,next) => {
     try {
-        const token = req.cookies.jwt
+        const token = req.headers['authorization']?.split(' ')[1];
         if(!token){
             res.status(401).json({message:"Unauthorized team"})
         }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Mainpage.css';
 import logo from "../assets/logo.png";
-
+import { useNavigate } from 'react-router-dom';
 function MainPage() {
 
   const scrollToTop = () => {
@@ -10,7 +10,16 @@ function MainPage() {
       behavior: 'smooth' // Smooth scrolling
     });
   };
-
+  const navigate=useNavigate()
+ useEffect(() => {
+    // Check if JWT token is present in localStorage
+    const token = localStorage.getItem('jwt');
+    
+    // If no token, redirect to the login page
+    if (!token) {
+      navigate('/login');  // Redirect to the login page
+    }
+  }, [navigate]);
 
   return (
     

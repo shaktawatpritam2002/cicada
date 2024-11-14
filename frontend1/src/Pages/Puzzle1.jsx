@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Puzzle1.css';
+import axios from "axios"
 
 const Puzzle1 = () => {
   const [part1Answer, setPart1Answer] = useState('');
@@ -23,10 +24,20 @@ const Puzzle1 = () => {
     }
   };
   const handlePart2Submit = async (e) => {
+    const token = localStorage.getItem('jwt'); // or wherever you store the token
+    console.log(token)
+if (!token) {
+    console.error("No authentication token found.");
+   navigate('/login')
+}
     e.preventDefault();
     if (part2Answer === '307200') {
       try {
-        await axios.patch(`/api/teams/answer`, { isCorrect: true });
+        await axios.post(`http://localhost:3000/api/team/updateCount`, { isCorrect: true }, {
+          headers: {
+              'authorization': `Bearer ${token}`  // Adding the token as Bearer token in the Authorization header
+          }
+      });
         setShowSuccess(true);
         setShowError(false);
         setTimeout(() => {
@@ -40,7 +51,11 @@ const Puzzle1 = () => {
       }
     } else {
       try {
-        await axios.patch(`/api/teams/answer`, { isCorrect: false });
+        await axios.patch(`http://localhost:3000/api/team/updateCount`, { isCorrect: false }, {
+          headers: {
+              'Authorization': `Bearer ${token}`  // Adding the token as Bearer token in the Authorization header
+          }
+      });
         setShowError(true);
         setTimeout(() => setShowError(false), 3000);
       } catch (error) {

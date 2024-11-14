@@ -12,4 +12,5 @@ const generateCookie = (userId, res) => {
   
 };
 
+
 export default generateCookie;

@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: "Lemon-Milk";
-    src: url("../../public/Fonts/LEMONMILK-Bold.otf") format('opentype');
+    src: url("/Fonts/LEMONMILK-Bold.otf") format('opentype');
     font-weight: normal;
     font-style: normal;
   }
