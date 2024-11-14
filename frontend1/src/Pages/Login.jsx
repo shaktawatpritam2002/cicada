@@ -36,9 +36,9 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="backgroud-img">
       <div className="login-container">
-      <h2>Login</h2>
+      <h2 className="log1">Log In</h2>
       
       <form onSubmit={handleSubmit}>
       <div className="log-box" >
@@ -78,9 +78,9 @@ function Login() {
       </div>
         
       </form>
+     </div>
     </div>
-    
-    </>
+   
   );
 }
 

@@ -5,15 +5,18 @@
     padding: 20px;
     /* border: 1px solid red; */
     border-radius: 8px;
-    background-color: #1e1e1e !important;
+    background-color: #1e1e1e;
     box-shadow: 0px 0px 10px 0px white;
-    margin-top: 40px;
+  margin-top: 40px;
   }
 
   
   .login-container h2 {
     text-align: center;
   
+  }
+  .log1{
+    color: #00ff00;
   }
   
   .login-container form {
@@ -60,7 +63,7 @@ input{
   text-align: start;
   width: 56%;
   margin-bottom: 10px;
-  color: rgb(182, 168, 168);
+  color: #00ff00;
  
 }
 .center1{
@@ -69,18 +72,4 @@ input{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-
-
-.btn-box{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#signup-btn-loginpage{
-  width: 100%;
-  margin-top: 8px;
 }

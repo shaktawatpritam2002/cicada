@@ -4,8 +4,10 @@ import { configDotenv } from "dotenv";
 import {connectDB} from "./config/db.js";
 import cookieParser from 'cookie-parser';
 import TeamRouter from "./routes/teamRoute.js"
-
+import cors from "cors"
 const app = express();
+app.use(cors())
+app.use(express.json())
 configDotenv();
 connectDB();
 
