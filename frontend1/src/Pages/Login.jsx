@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
   const navigate = useNavigate()
@@ -38,29 +39,31 @@ function Login() {
       <h2>Login</h2>
       
       <form onSubmit={handleSubmit}>
-      <div >
-        <label>
-            Email:
-           <br />
-            <input
+      <div className="log-box" >
+        <label className="center1">
+          <div className="log-name"> Email:</div>
+          
+            <input 
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
+              placeholder="Email"
             />
         </label>
       </div>
-      <div>
-        <label>
-          Password:
-          <br />
+      <div className="log-box" >
+        <label  className="center1">
+         <div className="log-name"> Password:</div>
+     
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
+            placeholder="Password"
           />
         </label>
       </div>
