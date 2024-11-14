@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Puzzle2.css';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Puzzle2 = () => {
   const [outerPosition, setOuterPosition] = useState(0);
   const [innerPosition, setInnerPosition] = useState(0);
   const [answer, setAnswer] = useState('');
   const [notification, setNotification] = useState({ show: false, type: '', message: '' });
-
+  const navigate=useNavigate()
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
+  useEffect(() => {
+    console.log('useEffect is running');
+    const checkPuzzleNumber = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+          console.log('No token found, navigating to login');
+          navigate('/login');
+          return;
+        }
+  
+        console.log('Token found, making request to get correct count');
+        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        });
+  
+        const currentPath = window.location.pathname;
+        const puzzleNumber = currentPath.split('/')[2];
+        
+        console.log('Current puzzle number:', puzzleNumber);
+        console.log('Server count:', response.data.correctCount);
+        console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
+        
+        // Check if they match
+        if (puzzleNumber < response.data.correctCount.toString()) {
+          console.log("Puzzle numbers don't match, user can proceed");
+        } else {
+          console.log("Puzzle numbers match, redirecting to puzzle journey");
+          navigate('/puzzle-journey');
+        }
+      } catch (error) {
+        console.error('Error fetching correct count:', error);
+        navigate('/login');
+      }
+    };
+  
+    checkPuzzleNumber();
+  }, [navigate]);
   const coordinates = [
     [-17.9], [3,3], [-4, -13], [-23, -13], [7,-5], [8,11], [25,6], 
     [18,10], [0, -16], [15,-5], [28,0], [-5, -8], [-5], [-7], [-15], 
@@ -43,11 +83,32 @@ const Puzzle2 = () => {
     };
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const correctAnswer = "rospinot tech fest ignites robotics innovation and growth";
-    
+    const token = localStorage.getItem('jwt'); // or wherever you store the token
+    console.log(token)
+if (!token) {
+    console.error("No authentication token found.");
+   navigate('/login')
+}
     if (answer.toLowerCase().trim() === correctAnswer) {
+      try {
+        await axios.post(`http://localhost:3000/api/team/updateCount`, { isCorrect: true }, {
+          headers: {
+              'authorization': `Bearer ${token}`  // Adding the token as Bearer token in the Authorization header
+          }
+      });
+       
+        setTimeout(() => {
+         
+          navigate('/puzzle/3');
+        }, 3000);
+      } catch (error) {
+        console.error('Error updating correct count:', error);
+       
+       
+      }
       setNotification({
         show: true,
         type: 'success',
