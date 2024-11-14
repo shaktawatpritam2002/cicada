@@ -1,0 +1,67 @@
+.puzzle-container {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: monospace;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .puzzle-title {
+    color: #00ff00;
+  }
+  
+  .step-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .step-buttons button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  .step-buttons button.active {
+    background-color: #0077ff;
+    opacity: 1;
+  }
+  
+  .time-left {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #1c1c1c;
+    color: #fff;
+    font-family: monospace;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #0077ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0052b3;
+  }

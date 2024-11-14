@@ -11,6 +11,8 @@ import Puzzle3 from "./Pages/Puzzle3.jsx"
 import Puzzle4 from "./Pages/Puzzle4.jsx";
 import Puzzle6 from "./Pages/Puzzle6.jsx";
 import SimpleHeader from "./Components/simpleheader.jsx";
+import Puzzle7 from "./Pages/Puzzle7.jsx";
+import Puzzle3 from "./Pages/Puzzle3.jsx";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
 
         <Route path="/puzzle/4" element={<Puzzle4 />} />
         <Route path="/puzzle/6" element={<Puzzle6 />} />
+        <Route path="/puzzle/7" element={<Puzzle7 />} />
+        <Route path="/puzzle/3" element={<Puzzle3 />} />
       </Routes>
     </div>
   );
