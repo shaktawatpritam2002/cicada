@@ -9,37 +9,38 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
-.cicada-header,
-.cicada-footer {
-  padding: 2rem;
-  text-align: center;
+.Background-img{
+  width: 800px;
+  height: 500px;
+  background-image: url("../assets/cicda.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Ball-up{
+  position: fixed;
+  height: 60px;
+  width: 60px;
+  right: 30px;
+  bottom: 30px;
+  background-color: orange;
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 9px 0px orange;
 }
 
-.cicada-title {
-  font-size: 3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
+.uparrow{
+  background-image: url("../assets/uparrow.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  height: 30px;
+  width: 30px;
+  align-items: center;
 }
-
-.cicada-content {
-  padding: 2rem;
-}
-
-.cicada-subtitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.cicada-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
-.cicada-intro,
-.cicada-about,
-.cicada-participate {
-  margin-bottom: 3rem;
+.Background-img-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
