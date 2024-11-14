@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 
-@font-face {
-  font-family: "Lemon-Milk";
-  src: url("../../public/Fonts/LEMONMILK-Bold.otf") format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 
 .cicada-container {
   background-color: #1c1c1c;
@@ -65,19 +58,6 @@
 }
 
 
-.mainpage-header{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-}
-
-.page-title{
-  margin-left: auto;
-  margin-right: 50px;
-  font-family: Lemon-Milk;
-  font-size: 32px;
-}
 .about-box{
   background-color: black;
   height: 300px;

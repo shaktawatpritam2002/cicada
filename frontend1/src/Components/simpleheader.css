@@ -1,0 +1,23 @@
+
+@font-face {
+    font-family: "Lemon-Milk";
+    src: url("../../public/Fonts/LEMONMILK-Bold.otf") format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  
+.mainpage-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background-color:#000000 ;
+  }
+  
+  .page-title{
+    margin-left: auto;
+    margin-right: 50px;
+    font-family: Lemon-Milk;
+    font-size: 32px;
+  }
