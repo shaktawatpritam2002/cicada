@@ -3,8 +3,17 @@ import './Mainpage.css';
 import logo from "../assets/logo.png";
 
 function MainPage() {
-  
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Smooth scrolling
+    });
+  };
+
+
   return (
+    
     <>
       <div className='mainpage-header'>
         <div className='logo'><img src={logo}></img></div>
@@ -14,7 +23,7 @@ function MainPage() {
         
           <div className="Background-img">
             <div className="Ball-up">
-              <div className='uparrow'></div>
+              <div className='uparrow' onClick={scrollToTop}></div>
             </div>
           </div>
       
