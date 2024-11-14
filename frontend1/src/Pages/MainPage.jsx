@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import './Mainpage.css';
 import logo from "../assets/logo.png";
+
 import { useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
+
 function MainPage() {
 
   const scrollToTop = () => {
@@ -34,6 +38,11 @@ function MainPage() {
             </div>
           </div>
        </div>
+       <div className='start-journey'>
+        <Link to="/puzzle-journey">
+        <button id="start-journey-btn">Start Quiz</button>
+        </Link>
+      </div>
        <div className="about-box">
           <div>
             <br />

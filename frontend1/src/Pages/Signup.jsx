@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./Signup.css"
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function Signup() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -36,12 +37,13 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
-      <h2>Signup</h2>
+    <div className="backgroud-img">
+      <div className="signup-container">
+      <h2 className="sign">Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
+        <label className="center1">
+        <div className="log-name">Email:</div>      
+            <input
             type="email"
             name="email"
             value={formData.email}
@@ -49,8 +51,8 @@ function Signup() {
             required
           />
         </label>
-        <label>
-          Member 1:
+        <label  className="center1">
+        <div className="log-name">Member 1:</div>
           <input
             type="text"
             name="member1"
@@ -59,8 +61,8 @@ function Signup() {
             required
           />
         </label>
-        <label>
-          Member 2:
+        <label className="center1">
+        <div className="log-name">Member 2:</div>
           <input
             type="text"
             name="member2"
@@ -69,8 +71,8 @@ function Signup() {
             required
           />
         </label>
-        <label>
-          Member 3:
+        <label className="center1">
+        <div className="log-name">Member 3:</div>
           <input
             type="text"
             name="member3"
@@ -79,8 +81,8 @@ function Signup() {
             required
           />
         </label>
-        <label>
-          Password:
+        <label className="center1">
+          <div className="log-name">Password:</div>
           <input
             type="password"
             name="password"
@@ -89,9 +91,17 @@ function Signup() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <div className="center13">
+           <button   type="submit">Sign Up</button>
+           <Link to="/login">
+           <button id="login-btn-signuppage">Login</button>
+           </Link>
+        </div>
+       
       </form>
+     </div>
     </div>
+   
   );
 }
 
