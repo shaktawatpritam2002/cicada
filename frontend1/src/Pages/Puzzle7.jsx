@@ -92,7 +92,7 @@ const Puzzle = () => {
       case 1:
         return (
           <>
-            <p>"In the dark prince's speech of doubt and dread,  
+            <p id="text-puzle7">"In the dark prince's speech of doubt and dread,  
                A question lingers—both alive and dead.  
                Look not just at the words, but what they imply,  
                Sum the letters of the choice's reply.  
@@ -110,7 +110,7 @@ const Puzzle = () => {
       case 2:
         return (
           <>
-            <p>"The mind, layered in thought as in sheets of glass,
+            <p id="text-puzle7">The mind, layered in thought as in sheets of glass,
                 Reflects itself, consciousness amassed.
                 In Freud's trio, which guides the self,
                 It's neither id nor super, but what holds them itself."</p>
@@ -126,7 +126,7 @@ const Puzzle = () => {
       case 3:
         return (
           <>
-            <p>"As the mind is housed in a network so vast,
+            <p id="text-puzle7">"As the mind is housed in a network so vast,
 Think where decisions and morals are cast.
 It's found in a region at the brain's very helm,
 A cortex supreme in the neural realm."</p>
@@ -142,7 +142,7 @@ A cortex supreme in the neural realm."</p>
       case 4:
         return (
           <>
-            <p>"Artificial minds, mimicking our own,
+            <p id="text-puzle7" >"Artificial minds, mimicking our own,
                 Layers upon layers, each neuron grown.
                 Machines now learn from structures we trace,
                 A network of nodes, in clusters of space."</p>
@@ -158,7 +158,7 @@ A cortex supreme in the neural realm."</p>
       case 5:
         return (
           <>
-            <p>"From ancient wisdom and geometric lore,
+            <p id="text-puzle7" >"From ancient wisdom and geometric lore,
 A figure emerges with symmetry at its core.
 A perfect square, twice thrice aligned,
 A harmony in numbers, both even and prime.
@@ -177,7 +177,7 @@ In this dual harmony, the answer sticks."</p>
 
         return
         {handlePuzzleCompletion()}
-        <p>Congratulations! You've completed the puzzle!</p>;
+        <p id="text-puzle7" >Congratulations! You've completed the puzzle!</p>;
       default:
         return null;
     }
