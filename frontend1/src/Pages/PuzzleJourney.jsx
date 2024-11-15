@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './PuzzleJourney.css';
 
@@ -7,7 +7,7 @@ const PuzzleJourney = () => {
   const [correctCount, setCorrectCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const navigate=useNavigate()
   const puzzles = [
     { id: 1, title: 'The Beginning' },
     { id: 2, title: 'Logic Gates' },
@@ -26,6 +26,7 @@ const PuzzleJourney = () => {
         const token = localStorage.getItem('jwt');
         if (!token) {
           throw new Error('No authentication token found');
+          navigate('/login')
         }
 
         const response = await axios.get('http://localhost:3000/api/team/getcount', {
@@ -61,11 +62,13 @@ const PuzzleJourney = () => {
   }
 
   if (error) {
+    
     return (
       <div className="puzzle-journey">
         <div className="error">Error: {error}</div>
       </div>
     );
+    
   }
 
   return (

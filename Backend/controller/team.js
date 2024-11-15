@@ -80,7 +80,7 @@ const signupController = async(req,res)=>{
             member3:member3,
         })
         if (teamdata) {
-            generateCookie(teamdata._id,res);
+          
            return res.status(201).json({
                 teamdata
             });
