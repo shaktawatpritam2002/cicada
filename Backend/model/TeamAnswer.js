@@ -4,7 +4,7 @@ import { Schema } from "mongoose";
 const teamAnswerSchema = new Schema({
   TeamId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Team",
+    ref: "Team1",
     required: true,
   },
 

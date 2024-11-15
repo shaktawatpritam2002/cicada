@@ -14,16 +14,15 @@ const teamSchema = Schema({
     },
     member1:{
         type:String,
-        unique:true
+      
     },
     member2:{
         type:String,
-        unique:true
+      
     },
     member3:{
         type:String,
-        unique:true
     },
 }) 
 
-export default mongoose.model("Team", teamSchema);
+export default mongoose.model("Team1", teamSchema);

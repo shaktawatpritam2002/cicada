@@ -46,10 +46,12 @@ const PuzzleJourney = () => {
 
     fetchCount();
   }, []);
-
+console.log(correctCount)
   const getPuzzleStatus = (puzzleId) => {
     if (puzzleId <=correctCount) return 'completed';
-    if (puzzleId === correctCount + 1) return 'available';
+    if (puzzleId === correctCount + 1){
+      console.log(puzzleId)
+      return 'available';}
     return 'locked';
   };
 
