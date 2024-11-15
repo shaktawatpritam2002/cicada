@@ -29,7 +29,7 @@ const PuzzleJourney = () => {
           navigate('/login')
         }
 
-        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+        const response = await axios.get('cicada-production-a52d.up.railway.app/api/team/getcount', {
           headers: {
             authorization: `Bearer ${token}`
           }

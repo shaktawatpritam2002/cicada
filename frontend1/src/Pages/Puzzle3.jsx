@@ -39,7 +39,7 @@ const Puzzle3 = () => {
         return;
       }
       try {
-        await axios.post(`http://localhost:3000/api/team/updateCount`, { isCorrect: true }, {
+        await axios.post(`cicada-production-a52d.up.railway.app/api/team/updateCount`, { isCorrect: true }, {
           headers: {
               'authorization': `Bearer ${token}`  // Adding the token as Bearer token in the Authorization header
           }
@@ -74,7 +74,7 @@ const Puzzle3 = () => {
         }
 
         console.log('Token found, making request to get correct count');
-        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+        const response = await axios.get('cicada-production-a52d.up.railway.app/api/team/getcount', {
           headers: {
             authorization: `Bearer ${token}`
           }

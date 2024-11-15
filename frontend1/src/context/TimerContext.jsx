@@ -82,7 +82,7 @@ export const TimerProvider = ({ children }) => {
       }
 
       const response = await axios.post(
-        'http://localhost:3000/api/team/storeEndTime',
+        'cicada-production-a52d.up.railway.app/api/team/storeEndTime',
         { endTime: timeTaken },
         {
           headers: {

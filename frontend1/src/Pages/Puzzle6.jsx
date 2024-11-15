@@ -20,7 +20,7 @@ const Puzzle6 = () => {
         }
   
         console.log('Token found, making request to get correct count');
-        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+        const response = await axios.get('cicada-production-a52d.up.railway.app/api/team/getcount', {
           headers: {
             authorization: `Bearer ${token}`
           }
@@ -106,7 +106,7 @@ const Puzzle6 = () => {
           
           // Send a request to the backend to notify that the puzzle is completed
           const response = await axios.post(
-            'http://localhost:3000/api/team/updateCount', // Replace with your actual API endpoint
+            'cicada-production-a52d.up.railway.app/api/team/updateCount', // Replace with your actual API endpoint
             { isCorrect: true }, // You can send any necessary data with the request
             {
               headers: {
