@@ -2,13 +2,84 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./Puzzle4.css";
-
+import { useNavigate } from 'react-router-dom';
+import axios from "axios"
 const Puzzle4 = () => {
   const [step, setStep] = useState(1);
   const [answer, setAnswer] = useState('');
   const [unlockedSteps, setUnlockedSteps] = useState([1]);
   const [timeLeft, setTimeLeft] = useState(60);
+  const  navigate=useNavigate()
+  useEffect(() => {
+    console.log('useEffect is running');
+    const checkPuzzleNumber = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+          console.log('No token found, navigating to login');
+          navigate('/login');
+          return;
+        }
+  
+        console.log('Token found, making request to get correct count');
+        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        });
+  
+        const currentPath = window.location.pathname;
+        const puzzleNumber = currentPath.split('/')[2];
+        
+        console.log('Current puzzle number:', puzzleNumber);
+        console.log('Server count:', response.data.correctCount);
+        console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
+        const count=response.data.correctCount+1
+        // Check if they match
+        if (puzzleNumber == count.toString()) {
+          console.log("Puzzle numbers don't match, user can proceed");
+        } else {
+          console.log("Puzzle numbers match, redirecting to puzzle journey");
+          navigate('/puzzle-journey');
+        }
+      } catch (error) {
+        console.error('Error fetching correct count:', error);
+        navigate('/login');
+      }
+    };
+  
+    checkPuzzleNumber();
+  }, [navigate]);
+  const handlePuzzleCompletion = async () => {
+    // When the user completes the final step (Step 7), send the API request
 
+    const token = localStorage.getItem('jwt'); // Get the JWT token from localStorage
+
+    if (!token) {
+      toast.error("No authentication token found. Please log in again.");
+      return;
+    }
+
+    try {
+      // Send a request to the backend to notify that the puzzle is completed
+      const response = await axios.post(
+        'http://localhost:3000/api/team/updateCount', // Replace with your actual API endpoint
+        { isCorrect: true }, // You can send any necessary data with the request
+        {
+          headers: {
+            authorization: `Bearer ${token}` // Include the JWT token in the Authorization header
+          }
+        }
+      );
+      navigate('/puzzle/5')
+      // If the request is successful, show a success message
+      toast.success("Puzzle completed successfully! You are a champion!");
+
+    } catch (error) {
+      console.error('Error completing puzzle:', error);
+      toast.error("There was an error completing the puzzle. Please try again.");
+    }
+  };
   const hints = {
     1: "Hint: Think about a number associated with Ichigo in Bleach.",
     2: "Hint: Be brave to continue.",
@@ -136,6 +207,7 @@ the answer's what remains, though it may drive you insane</p>
           </>
         );
       case 7:
+        handlePuzzleCompletion();
         return <p id="puzz4-txt">Congratulations! You've completed the puzzle!</p>;
       default:
         return null;

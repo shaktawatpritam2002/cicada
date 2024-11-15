@@ -12,7 +12,7 @@ import Puzzle4 from "./Pages/Puzzle4.jsx";
 import Puzzle6 from "./Pages/Puzzle6.jsx";
 import SimpleHeader from "./Components/simpleheader.jsx";
 import Puzzle7 from "./Pages/Puzzle7.jsx";
-import Puzzle3 from "./Pages/Puzzle3.jsx";
+
 
 function App() {
   return (

@@ -23,8 +23,7 @@ const Puzzle3 = () => {
     } else {
       toast.error('Incorrect answer. Try again!');
     }
-  };
-  useEffect(() => {
+  }; useEffect(() => {
     console.log('useEffect is running');
     const checkPuzzleNumber = async () => {
       try {
@@ -48,9 +47,9 @@ const Puzzle3 = () => {
         console.log('Current puzzle number:', puzzleNumber);
         console.log('Server count:', response.data.correctCount);
         console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
-        
+        const count=response.data.correctCount+1
         // Check if they match
-        if (puzzleNumber < response.data.correctCount.toString()) {
+        if (puzzleNumber == count.toString()) {
           console.log("Puzzle numbers don't match, user can proceed");
         } else {
           console.log("Puzzle numbers match, redirecting to puzzle journey");
@@ -64,7 +63,6 @@ const Puzzle3 = () => {
   
     checkPuzzleNumber();
   }, [navigate]);
-
   return (
     <div
       style={{
