@@ -33,9 +33,9 @@ const Puzzle2 = () => {
         console.log('Current puzzle number:', puzzleNumber);
         console.log('Server count:', response.data.correctCount);
         console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
-        
+        const count=response.data.correctCount+1
         // Check if they match
-        if (puzzleNumber < response.data.correctCount.toString()) {
+        if (puzzleNumber == count.toString()) {
           console.log("Puzzle numbers don't match, user can proceed");
         } else {
           console.log("Puzzle numbers match, redirecting to puzzle journey");
