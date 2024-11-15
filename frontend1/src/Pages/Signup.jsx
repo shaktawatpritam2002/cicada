@@ -23,7 +23,7 @@ function Signup() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Form data:', formData);
-    const res = await fetch("cicada-production-a52d.up.railway.app/api/team/signup",{
+    const res = await fetch("https://cicada-production-a52d.up.railway.app/api/team/signup",{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'

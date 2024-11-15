@@ -21,7 +21,7 @@ function Login() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Login data:', formData);
-    const res = await fetch("cicada-production-a52d.up.railway.app/api/team/login",{
+    const res = await fetch("https://cicada-production-a52d.up.railway.app/api/team/login",{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'

@@ -19,7 +19,7 @@ const Puzzle5 = () => {
         return;
       }
       try {
-        const response = await axios.get('cicada-production-a52d.up.railway.app/api/team/getcount', {
+        const response = await axios.get('https://cicada-production-a52d.up.railway.app/api/team/getcount', {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -48,7 +48,7 @@ const Puzzle5 = () => {
     try {
       // Send a request to the backend to notify that the puzzle is completed
       await axios.post(
-        'cicada-production-a52d.up.railway.app/api/team/updateCount', // Replace with your actual API endpoint
+        'https://cicada-production-a52d.up.railway.app/api/team/updateCount', // Replace with your actual API endpoint
         { isCorrect: true }, // You can send any necessary data with the request
         {
           headers: {
