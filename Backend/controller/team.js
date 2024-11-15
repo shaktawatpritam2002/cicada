@@ -62,7 +62,7 @@ const signupController = async(req,res)=>{
         const teammember = await Team.findOne({
             $or:[{member1:member1},{member2:member2},{member3:member3}]
         });
-        if(teammember){
+        if(!teammember && teammember){
             return res.status(404).json({message:"member already present"});
         }
     
@@ -87,7 +87,7 @@ const signupController = async(req,res)=>{
             JWT_SECRET,
             { expiresIn: '24h' }
         );
-
+      
         if (teamdata) {
           
            return res.status(201).json({
