@@ -29,6 +29,9 @@ function Login() {
       body: JSON.stringify(formData),
     })
     const data = await res.json();
+    if(localStorage.getItem('jwt')){
+      localStorage.removeItem('jwt');
+    }
     localStorage.setItem('jwt', data.token);
     console.log(data);
     if(res.ok){
