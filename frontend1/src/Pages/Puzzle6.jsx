@@ -138,7 +138,7 @@ const Puzzle6 = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#121212', color: '#00ff00', padding: '20px', fontFamily: 'Arial', height: '100vh', padding: '50px' }}>
+    <div style={{ backgroundColor: '#121212', color: '#00ff00',fontFamily: 'Arial', height: '100vh', padding: '50px' }}>
       <h1 style={{ textAlign: 'center' }}>Anime Puzzle Game</h1>
       <div>
         {currentPart === 1 && (
