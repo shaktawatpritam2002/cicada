@@ -48,57 +48,69 @@ const LoginController = async (req, res) => {
             error: error.message 
         });
     }
-};
-const signupController = async(req,res)=>{
+};const signupController = async (req, res) => {
     try {
-        const {email,member1,member2,member3} = req.body;
-        let {password} = req.body;
-    
-        const team = await Team.findOne({leader_email:email});
-        if(team){
-            return res.status(404).json({message:"email already present"});
+        const { email, member1, member2, member3, password } = req.body;
+
+        // Check if the team with the given leader email already exists
+        const team = await Team.findOne({ leader_email: email });
+        if (team) {
+            return res.status(404).json({ message: "Email already present" });
         }
-    
+
+        // Check if any of the members already exist in the database (ignore empty strings)
         const teammember = await Team.findOne({
-            $or:[{member1:member1},{member2:member2},{member3:member3}]
+            $or: [
+                { member1: member1 && { $ne: "" } },
+                { member2: member2 && { $ne: "" } },
+                { member3: member3 && { $ne: "" } }
+            ]
         });
-        if(teammember!==""){
-            return res.status(404).json({message:"member already present"});
+
+        // If any non-empty member is found in another team
+        if (teammember) {
+            return res.status(404).json({ message: "One or more members are already part of a team" });
         }
-    
-        if(!password){
-            return res.status(404).json({message:"enter password"});
+
+        // If no password is provided
+        if (!password) {
+            return res.status(404).json({ message: "Please enter a password" });
         }
-    
+
+        // Encrypt the password before storing it in the database
         const salt = await bcrypt.genSalt(10);
-        password = await bcrypt.hash(password, salt)
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Create a new team
         const teamdata = await Team.create({
-            leader_email:email,
-            password:password,
-            member1:member1,
-            member2:member2,
-            member3:member3,
-        })
+            leader_email: email,
+            password: hashedPassword,
+            member1: member1,
+            member2: member2,
+            member3: member3,
+        });
+
+        // Create a JWT token
         const token = jwt.sign(
             {
-                // Ensure teamId is a string
                 email: teamdata.leader_email
             },
             JWT_SECRET,
             { expiresIn: '24h' }
         );
-      
+
+        // Respond with the team data and token if creation is successful
         if (teamdata) {
-          
-           return res.status(201).json({
-                teamdata, token:token
+            return res.status(201).json({
+                teamdata,
+                token: token
             });
         } else {
             return res.status(400).json({ message: "Invalid team data" });
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({message:"internal server error"});
+        res.status(500).json({ message: "Internal server error" });
     }
 };
 
