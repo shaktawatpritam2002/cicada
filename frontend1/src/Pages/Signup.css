@@ -35,10 +35,10 @@
   input, .center1 > input, #signup-input{
     border-radius: 5px;
     background-color: black;
-    color: black;
+    color: white;
     border: none;
   }
-  
+
   .signup-container button {
     margin-top: 20px;
     margin-bottom: 20px;
