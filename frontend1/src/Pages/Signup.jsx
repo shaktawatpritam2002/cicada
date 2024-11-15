@@ -44,6 +44,8 @@ function Signup() {
         <label className="center1">
         <div className="log-name">Email:</div>      
             <input
+            
+            id="signup-input"
             type="email"
             name="email"
             value={formData.email}
@@ -54,6 +56,7 @@ function Signup() {
         <label  className="center1">
         <div className="log-name">Member 1:</div>
           <input
+            id="signup-input"
             type="text"
             name="member1"
             value={formData.member1}
@@ -64,6 +67,8 @@ function Signup() {
         <label className="center1">
         <div className="log-name">Member 2:</div>
           <input
+          
+            id="signup-input"
             type="text"
             name="member2"
             value={formData.member2}
@@ -74,6 +79,7 @@ function Signup() {
         <label className="center1">
         <div className="log-name">Member 3:</div>
           <input
+            id="signup-input"
             type="text"
             name="member3"
             value={formData.member3}
@@ -84,6 +90,7 @@ function Signup() {
         <label className="center1">
           <div className="log-name">Password:</div>
           <input
+            id="signup-input"
             type="password"
             name="password"
             value={formData.password}
