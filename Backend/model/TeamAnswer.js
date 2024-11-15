@@ -12,6 +12,7 @@ const teamAnswerSchema = new Schema({
     type: Number,
     default: 0,
   },
+   endTime: { type: Date, default: null }
 });
 
 export default mongoose.model("TeamAnswer", teamAnswerSchema);

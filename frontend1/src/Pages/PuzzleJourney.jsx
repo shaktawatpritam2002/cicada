@@ -16,7 +16,7 @@ const PuzzleJourney = () => {
     { id: 5, title: 'Memory Maze' },
     { id: 6, title: 'Data Stream' },
     { id: 7, title: 'Neural Network' },
-    { id: 8, title: 'Final Integration' },
+    
   ];
 
   useEffect(() => {

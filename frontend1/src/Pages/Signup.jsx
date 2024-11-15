@@ -73,7 +73,7 @@ function Signup() {
             name="member2"
             value={formData.member2}
             onChange={handleChange}
-            required
+            
           />
         </label>
         <label className="center1">
@@ -84,7 +84,7 @@ function Signup() {
             name="member3"
             value={formData.member3}
             onChange={handleChange}
-            required
+           
           />
         </label>
         <label className="center1">

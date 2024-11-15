@@ -79,10 +79,19 @@ const signupController = async(req,res)=>{
             member2:member2,
             member3:member3,
         })
+        const token = jwt.sign(
+            {
+                // Ensure teamId is a string
+                email: teamdata.leader_email
+            },
+            JWT_SECRET,
+            { expiresIn: '24h' }
+        );
+
         if (teamdata) {
           
            return res.status(201).json({
-                teamdata
+                teamdata, token:token
             });
         } else {
             return res.status(400).json({ message: "Invalid team data" });
@@ -248,5 +257,24 @@ const getCorrectCount = async (req, res) => {
     }
 };
 
-
-export {signupController,LoginController,Logout,getAns,postAns,updateCorrectCount,getCorrectCount};
+const storeEndTime = async (req, res) => {
+    try {
+      const { teamId, endTime } = req.body;
+  
+      if (!teamId || !endTime) {
+        return res.status(400).json({ error: 'Team ID and end time are required.' });
+      }
+  
+      // Save the end time for the team
+      const updatedTeam = await TeamAnswer.findOneAndUpdate(
+        { TeamId: teamId },
+        { $set: { endTime } },
+        { new: true, upsert: true } // Create entry if not exists
+      );
+  
+      res.status(200).json({ message: 'End time stored successfully.', updatedTeam });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to store end time.' });
+    }
+  };
+export {signupController,LoginController,Logout,getAns,postAns,updateCorrectCount,getCorrectCount,storeEndTime};

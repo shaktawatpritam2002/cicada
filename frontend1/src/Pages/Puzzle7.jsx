@@ -1,81 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Puzzle7.css';
+import { useNavigate } from 'react-router-dom'; // Ensure this is imported correctly
 import axios from 'axios';
+import './Puzzle7.css';
+
 const Puzzle = () => {
-  const handlePuzzleCompletion = async () => {
-    // When the user completes the final step (Step 7), send the API request
-
-    const token = localStorage.getItem('jwt'); // Get the JWT token from localStorage
-
-    if (!token) {
-      toast.error("No authentication token found. Please log in again.");
-      return;
-    }
-    useEffect(() => {
-      console.log('useEffect is running');
-      const checkPuzzleNumber = async () => {
-        try {
-          const token = localStorage.getItem('jwt');
-          if (!token) {
-            console.log('No token found, navigating to login');
-            navigate('/login');
-            return;
-          }
-    
-          console.log('Token found, making request to get correct count');
-          const response = await axios.get('http://localhost:3000/api/team/getcount', {
-            headers: {
-              authorization: `Bearer ${token}`
-            }
-          });
-    
-          const currentPath = window.location.pathname;
-          const puzzleNumber = currentPath.split('/')[2];
-          
-          console.log('Current puzzle number:', puzzleNumber);
-          console.log('Server count:', response.data.correctCount);
-          console.log('Types - puzzleNumber:', typeof puzzleNumber, 'correctCount:', typeof response.data.correctCount);
-          const count=response.data.correctCount+1
-          // Check if they match
-          if (puzzleNumber == count.toString()) {
-            console.log("Puzzle numbers don't match, user can proceed");
-          } else {
-            console.log("Puzzle numbers match, redirecting to puzzle journey");
-            navigate('/puzzle-journey');
-          }
-        } catch (error) {
-          console.error('Error fetching correct count:', error);
-          navigate('/login');
-        }
-      };
-    
-      checkPuzzleNumber();
-    }, [navigate]);
-    try {
-      // Send a request to the backend to notify that the puzzle is completed
-      const response = await axios.post(
-        'http://localhost:3000/api/team/updateCount', // Replace with your actual API endpoint
-        { isCorrect: true }, // You can send any necessary data with the request
-        {
-          headers: {
-            authorization: `Bearer ${token}` // Include the JWT token in the Authorization header
-          }
-        }
-      );
-      navigate('/puzzle/5')
-      // If the request is successful, show a success message
-      toast.success("Puzzle completed successfully! You are a champion!");
-
-    } catch (error) {
-      console.error('Error completing puzzle:', error);
-      toast.error("There was an error completing the puzzle. Please try again.");
-    }
-  };
   const [step, setStep] = useState(1);
   const [answer, setAnswer] = useState('');
   const [unlockedSteps, setUnlockedSteps] = useState([1]);
+  const navigate = useNavigate(); // React Router hook for navigation
+
+  const handlePuzzleCompletion = async () => {
+    const token = localStorage.getItem('jwt'); // Get the JWT token
+
+    if (!token) {
+      toast.error('No authentication token found. Please log in again.');
+      return;
+    }
+
+    try {
+      await axios.post(
+        'http://localhost:3000/api/team/updateCount',
+        { isCorrect: true },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success('Puzzle completed successfully! You are a champion!');
+      navigate('/winner'); // Navigate to the winner page
+    } catch (error) {
+      console.error('Error completing puzzle:', error);
+      toast.error('There was an error completing the puzzle. Please try again.');
+    }
+  };
+
+  useEffect(() => {
+    const checkPuzzleNumber = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+          console.log('No token found, navigating to login');
+          navigate('/login');
+          return;
+        }
+
+        const response = await axios.get('http://localhost:3000/api/team/getcount', {
+          headers: { authorization: `Bearer ${token}` },
+        });
+
+        const currentPath = window.location.pathname;
+        const puzzleNumber = currentPath.split('/')[2];
+        const count = response.data.correctCount + 1;
+
+        if (puzzleNumber === count.toString()) {
+          console.log("Puzzle numbers don't match, user can proceed");
+        } else {
+          console.log('Puzzle numbers match, redirecting to puzzle journey');
+          navigate('/puzzle-journey');
+        }
+      } catch (error) {
+        console.error('Error fetching correct count:', error);
+        navigate('/login');
+      }
+    };
+
+    checkPuzzleNumber();
+  }, [navigate]);
 
   const checkAnswer = (correctAnswer, nextStep) => {
     if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
@@ -83,7 +76,7 @@ const Puzzle = () => {
       setStep(nextStep);
       setAnswer('');
     } else {
-      toast.error("Incorrect answer. Try again!");
+      toast.error('Incorrect answer. Try again!');
     }
   };
 
@@ -92,12 +85,14 @@ const Puzzle = () => {
       case 1:
         return (
           <>
-            <p id="text-puzle7">"In the dark prince's speech of doubt and dread,  
-               A question lingers—both alive and dead.  
-               Look not just at the words, but what they imply,  
-               Sum the letters of the choice's reply.  
-               Consider vowels' weight in his solemn call,  
-               Find the total, it's the key to it all."</p>
+            <p id="text-puzle7">
+              "In the dark prince's speech of doubt and dread,  
+              A question lingers—both alive and dead.  
+              Look not just at the words, but what they imply,  
+              Sum the letters of the choice's reply.  
+              Consider vowels' weight in his solemn call,  
+              Find the total, it's the key to it all."
+            </p>
             <input
               type="text"
               placeholder="Enter answer"
@@ -110,10 +105,12 @@ const Puzzle = () => {
       case 2:
         return (
           <>
-            <p id="text-puzle7">The mind, layered in thought as in sheets of glass,
-                Reflects itself, consciousness amassed.
-                In Freud's trio, which guides the self,
-                It's neither id nor super, but what holds them itself."</p>
+            <p id="text-puzle7">
+              "The mind, layered in thought as in sheets of glass,  
+              Reflects itself, consciousness amassed.  
+              In Freud's trio, which guides the self,  
+              It's neither id nor super, but what holds them itself."
+            </p>
             <input
               type="text"
               placeholder="Enter answer"
@@ -126,10 +123,12 @@ const Puzzle = () => {
       case 3:
         return (
           <>
-            <p id="text-puzle7">"As the mind is housed in a network so vast,
-Think where decisions and morals are cast.
-It's found in a region at the brain's very helm,
-A cortex supreme in the neural realm."</p>
+            <p id="text-puzle7">
+              "As the mind is housed in a network so vast,  
+              Think where decisions and morals are cast.  
+              It's found in a region at the brain's very helm,  
+              A cortex supreme in the neural realm."
+            </p>
             <input
               type="text"
               placeholder="Enter answer"
@@ -142,10 +141,12 @@ A cortex supreme in the neural realm."</p>
       case 4:
         return (
           <>
-            <p id="text-puzle7" >"Artificial minds, mimicking our own,
-                Layers upon layers, each neuron grown.
-                Machines now learn from structures we trace,
-                A network of nodes, in clusters of space."</p>
+            <p id="text-puzle7">
+              "Artificial minds, mimicking our own,  
+              Layers upon layers, each neuron grown.  
+              Machines now learn from structures we trace,  
+              A network of nodes, in clusters of space."
+            </p>
             <input
               type="text"
               placeholder="Enter answer"
@@ -158,12 +159,14 @@ A cortex supreme in the neural realm."</p>
       case 5:
         return (
           <>
-            <p id="text-puzle7" >"From ancient wisdom and geometric lore,
-A figure emerges with symmetry at its core.
-A perfect square, twice thrice aligned,
-A harmony in numbers, both even and prime.
-Seek the shape where six meets six,
-In this dual harmony, the answer sticks."</p>
+            <p id="text-puzle7">
+              "From ancient wisdom and geometric lore,  
+              A figure emerges with symmetry at its core.  
+              A perfect square, twice thrice aligned,  
+              A harmony in numbers, both even and prime.  
+              Seek the shape where six meets six,  
+              In this dual harmony, the answer sticks."
+            </p>
             <input
               type="text"
               placeholder="Enter answer"
@@ -174,10 +177,8 @@ In this dual harmony, the answer sticks."</p>
           </>
         );
       case 6:
-
-        return
-        {handlePuzzleCompletion()}
-        <p id="text-puzle7" >Congratulations! You've completed the puzzle!</p>;
+        handlePuzzleCompletion();
+        return <p id="text-puzle7">Congratulations! You've completed the puzzle!</p>;
       default:
         return null;
     }

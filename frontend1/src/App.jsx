@@ -12,11 +12,15 @@ import Puzzle4 from "./Pages/Puzzle4.jsx";
 import Puzzle6 from "./Pages/Puzzle6.jsx";
 import SimpleHeader from "./Components/simpleheader.jsx";
 import Puzzle7 from "./Pages/Puzzle7.jsx";
+import Puzzle5 from "./Pages/Puzzle5.jsx";
+import Winners from "./Pages/winners.jsx";
+import TimerProvider from "./context/TimerContext.jsx";
 
 
 function App() {
   return (
-    <div className="App">
+    <TimerProvider>
+        <div className="App">
       <SimpleHeader />
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -28,12 +32,17 @@ function App() {
         <Route path="/puzzle/3" element={<Puzzle3 />} />
 
         <Route path="/puzzle/4" element={<Puzzle4 />} />
+        <Route path="/puzzle/5" element={<Puzzle5 />} />
+
         <Route path="/puzzle/6" element={<Puzzle6 />} />
         <Route path="/puzzle/7" element={<Puzzle7 />} />
         <Route path="/puzzle/3" element={<Puzzle3 />} />
+        <Route path="/winner" element={<Winners/>}/>
       </Routes>
     </div>
-  );
+  
+    </TimerProvider>
+  )
 }
 
 export default App;

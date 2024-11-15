@@ -1,5 +1,5 @@
 import express from "express";
-import { LoginController, signupController,Logout, getCorrectCount, updateCorrectCount } from "../controller/team.js";
+import { LoginController, signupController,Logout, getCorrectCount, updateCorrectCount, storeEndTime } from "../controller/team.js";
 import { verifyToken } from "../config/verifytoken.js";
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.post("/updateCount",verifyToken,updateCorrectCount)
 router.get('/check-login', verifyToken, (req, res) => {
     res.status(200).json({ message: "User is logged in", teamId: req.team._id });
 });
+router.get('/storeEndTime',verifyToken,storeEndTime);
 
 export default router;

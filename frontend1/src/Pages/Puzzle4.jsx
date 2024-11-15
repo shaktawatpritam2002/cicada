@@ -52,7 +52,7 @@ const Puzzle4 = () => {
   }, [navigate]);
   const handlePuzzleCompletion = async () => {
     // When the user completes the final step (Step 7), send the API request
-
+    console.log("clicked")
     const token = localStorage.getItem('jwt'); // Get the JWT token from localStorage
 
     if (!token) {
@@ -71,6 +71,7 @@ const Puzzle4 = () => {
           }
         }
       );
+      console.log(response)
       navigate('/puzzle/5')
       // If the request is successful, show a success message
       toast.success("Puzzle completed successfully! You are a champion!");
@@ -206,10 +207,19 @@ the answer's what remains, though it may drive you insane</p>
             </button>
           </>
         );
-      case 7:
-        handlePuzzleCompletion();
-        return <p id="puzz4-txt">Congratulations! You've completed the puzzle!</p>;
-      default:
+        case 7:
+          return (
+            <div>
+              <p id="puzz4-txt">Congratulations! You've completed the puzzle!</p>
+              <button 
+                onClick={handlePuzzleCompletion}
+                id="puzz4-btn"
+              >
+                Continue to Next Puzzle
+              </button>
+            </div>
+          );
+         default:
         return null;
     }
   };
@@ -252,7 +262,7 @@ the answer's what remains, though it may drive you insane</p>
           </button>
         ))}
       </div>
-      <p style={{ color: '#00ff00', 'font-size' : '24px','padding' : '14px' }}>Time left: {timeLeft} seconds</p>
+
       {renderStep()}
       <ToastContainer position="top-center" autoClose={5000} />
     </div>
