@@ -36,8 +36,12 @@ function Signup() {
     }
     localStorage.setItem('jwt', data.token);
     console.log(data);
-    
+    if(res.ok){
     navigate("/");
+    }
+    else {
+      alert("error member already present")
+    }
   };
 
   return (

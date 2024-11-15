@@ -62,7 +62,7 @@ const signupController = async(req,res)=>{
         const teammember = await Team.findOne({
             $or:[{member1:member1},{member2:member2},{member3:member3}]
         });
-        if(!teammember && teammember){
+        if(teammember!==""){
             return res.status(404).json({message:"member already present"});
         }
     
