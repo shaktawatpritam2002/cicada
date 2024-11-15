@@ -22,16 +22,30 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.Background-img{
-  height: 90vh;
+
+.center-img{
+  height: 100%;
   width: 100%;
   background: 
+  url("../assets/cicda.png"),
   linear-gradient(to  bottom, black, transparent),
-  url("../assets/home.png");
+  linear-gradient(to  top, black 0.5%,  transparent),
+  url("../assets/number1.jpeg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 70% 80%, 100% 100%, 100%,100%,100% 100%;
   background-position: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
+.Background-img{
+  margin-top: -30%;
+  height: 150vh;
+  width: 100%;
+  display: flex;
+}
+
 .Ball-up{
   position: fixed;
   height: 60px;
@@ -83,13 +97,17 @@
   margin-bottom: 50px;
 }
 #start-journey-btn {
+  width: 200px;
+  height: 50px;
   background-color: #000000;
   color : white;
   padding: 12px;
   font-family: Lemon-Milk;
+  font-size: 18px;
   border: 0;
   border-radius: 4px;
   transition: transform 0.25s ease-in-out;
+  box-shadow: 0px 0px 10px 3px #00ff00 ;
 }
 
 #start-journey-btn:hover{
@@ -98,12 +116,89 @@
 
 }
 
-@media (max-width : 768px) {
-  .Background-img{
-    margin-top: 50%;
-  }
+
+.center-img-mobile{
+  display: none;
+}
+
+@media (max-width : 1400px){
   .center-img{
-    height: 150px;
+    height: 100%;
+    width: 100%;
+    background: 
+    url("../assets/cicda.png"),
+    linear-gradient(to  bottom, black, transparent),
+    linear-gradient(to  top, black 0.5%,  transparent),
+    url("../assets/number1.jpeg");
+    background-repeat: no-repeat;
+    background-size: 120% 80%, 100% 100%, 100%,100%,100% 100%;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
+}
+
+@media (max-width : 768px) {
+
+
+  .center-img{
+    display: none;
+  }
+
+  .center-img-mobile{
+    width: auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    background: 
+    url("../assets/cicda.png"),
+    linear-gradient(to  bottom, black 10%, transparent),
+    linear-gradient(to  top, black 10%,  transparent),
+    url("../assets/number1.jpeg");
+    background-repeat: no-repeat;
+    background-size: 140% 50%, 100% 100%, 100%,100%,100% 100%;
+    background-position: center;
+  }
+
+  .start-journey{
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+
+}
+
+@media (max-width : 400px) {
+  .center-img{
+    display: none;
+  }
+
+  .center-img-mobile{
+    width: auto;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    background: 
+    url("../assets/cicda.png"),
+    linear-gradient(to  bottom, black 10%, transparent),
+    linear-gradient(to  top, black 10%,  transparent),
+    url("../assets/number1.jpeg");
+    background-repeat: no-repeat;
+    background-size: 140% 50%, 100% 100%, 100%,100%,100% 100%;
+    background-position: center;
+  }
+
+  .start-journey{
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
 }
 

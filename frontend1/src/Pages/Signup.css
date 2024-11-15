@@ -27,6 +27,16 @@
   .signup-container input {
     padding: 8px;
     font-size: 1em;
+    background-color: black;
+    color: black;
+    border: none;
+  }
+
+  input, .center1 > input, #signup-input{
+    border-radius: 5px;
+    background-color: black;
+    color: black;
+    border: none;
   }
   
   .signup-container button {
