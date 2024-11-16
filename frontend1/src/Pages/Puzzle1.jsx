@@ -71,7 +71,7 @@ if (!token) {
    navigate('/login')
 }
     e.preventDefault();
-    if (part2Answer === '307200') {
+    if (part2Answer === '11025') {
       try {
         await axios.post(`https://cicada-production-a52d.up.railway.app/api/team/updateCount`, { isCorrect: true }, {
           headers: {

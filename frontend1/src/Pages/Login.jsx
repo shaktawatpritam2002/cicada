@@ -18,26 +18,44 @@ function Login() {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login data:', formData);
-    const res = await fetch("https://cicada-production-a52d.up.railway.app/api/team/login",{
-      method:"POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData),
-    })
-    const data = await res.json();
-    if(localStorage.getItem('jwt')){
-      localStorage.removeItem('jwt');
-    }
-    localStorage.setItem('jwt', data.token);
-    console.log(data);
-    if(res.ok){
-     navigate("/");
+    console.log("Login data:", formData);
+    
+    try {
+      const res = await fetch("https://cicada-production-a52d.up.railway.app/api/team/login", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        // Display alert for incorrect login
+        alert(data.message || "Invalid login credentials. Please try again.");
+        return;
+      }
+  
+      // If a token exists in localStorage, remove it
+      if (localStorage.getItem("jwt")) {
+        localStorage.removeItem("jwt");
+      }
+  
+      // Save new token to localStorage
+      localStorage.setItem("jwt", data.token);
+      console.log(data);
+  
+      // Navigate to the home page on successful login
+      navigate("/");
+    } catch (error) {
+      console.error("An error occurred:", error);
+      alert("An unexpected error occurred. Please try again later.");
     }
   };
+  
 
   return (
     <div className="backgroud-img">
