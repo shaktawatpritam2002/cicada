@@ -8,6 +8,15 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx">
+  
+  document.addEventListener('keydown', function(event) {
+    // Disable F12, Ctrl+Shift+I, and Ctrl+U
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I') || (event.ctrlKey && event.key === 'U')) {
+      event.preventDefault();
+    }
+  });
+
+    </script>
   </body>
 </html>
